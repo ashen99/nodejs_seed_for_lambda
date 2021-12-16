@@ -1,0 +1,30 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/car-manager/src",
+  "monorepo": true,
+  "root": "apps/car-manager",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/car-manager/tsconfig.app.json"
+  },
+  "projects": {
+    "car-manager": {
+      "type": "application",
+      "root": "apps/car-manager",
+      "entryFile": "main",
+      "sourceRoot": "apps/car-manager/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/car-manager/tsconfig.app.json"
+      }
+    },
+    "employee-app": {
+      "type": "application",
+      "root": "apps/employee-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/employee-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/employee-app/tsconfig.app.json"
+      }
+    }
+  }
+}

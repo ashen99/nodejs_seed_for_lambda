@@ -1,0 +1,30 @@
+service:
+  name: nest-serverless-lambda-car-manager
+
+plugins:
+  - 'serverless-plugin-typescript'
+  - serverless-plugin-optimize
+  - serverless-offline
+
+provider:
+  name: aws
+  iam:
+    role: arn:aws:iam::313823715318:role/AWSLambdaBasicExecutionRole-cbd25b53-41e6-4c7e-a4a7-b086761e2245
+  runtime: nodejs12.x
+
+
+functions:
+  main: # The name of the lambda function
+    # The module 'handler' is exported in the file 'src/lambda'
+    handler: apps/car-manager/src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /car/{any+}
+
+  employeeFunc:
+    handler: apps/employee-app/src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /employee/{any+}
