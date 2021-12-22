@@ -4,8 +4,6 @@ import { PlantService } from './plant.service';
 import { Plant } from './entities/plant.entity';
 import { CreatePlantInput } from './dto/create-plant.input';
 import { UpdatePlantInput } from './dto/update-plant.input';
-import exp from 'constants';
-
 describe('PlantResolver', () => {
   let resolver: PlantResolver;
 
@@ -29,17 +27,17 @@ describe('PlantResolver', () => {
                 testPlant.address = 'Thulhiriya';
                 return testPlant;
               }),
-              createPlant: jest.fn((plant: CreatePlantInput) => ({
+              create: jest.fn((plant: CreatePlantInput) => ({
                 id: 'ed2a61d6-62f0-11ec-90d6-0242ac120003',
                 address: plant.address,
               })),
-              updatePlant: jest.fn(
+              update: jest.fn(
                 (id: string, updatedPlant: UpdatePlantInput) => ({
                   id: 'ed2a61d6-62f0-11ec-90d6-0242ac120003',
                   address: updatedPlant.address,
                 }),
               ),
-              deletePlant: jest.fn((id: string) => true),
+              remove: jest.fn((id: string) => true),
             };
           },
         },
