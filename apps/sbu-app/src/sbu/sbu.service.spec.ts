@@ -12,7 +12,6 @@ describe('SbuService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         SbuService,
-        SbuService,
         {
           provide: getRepositoryToken(Sbu),
           useValue: mockSbuRepository,
