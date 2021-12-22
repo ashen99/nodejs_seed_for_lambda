@@ -9,6 +9,11 @@ export class Plant {
   id: { id: string };
 
   @Field()
-  @Column()
+  @Column({nullable:false})
   address: string;
+
+  constructor(address?: string);
+  constructor(address: string) {
+    this.address = address;
+  }
 }
