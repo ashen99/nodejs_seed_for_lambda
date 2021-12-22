@@ -25,6 +25,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/employee-app/tsconfig.app.json"
       }
+    },
+    "plant-app": {
+      "type": "application",
+      "root": "apps/plant-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/plant-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/plant-app/tsconfig.app.json"
+      }
     }
   }
 }
