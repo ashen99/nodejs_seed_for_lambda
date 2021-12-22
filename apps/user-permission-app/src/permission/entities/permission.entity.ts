@@ -9,11 +9,11 @@ export class Permission {
   id: number;
 
   @Field()
-  @Column()
+  @Column({ nullable: false })
   name: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: false, unique: true })
   permission: string;
 
   @Field(() => Boolean)
