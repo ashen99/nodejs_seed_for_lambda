@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Plant {
+  id: String!
+  address: String!
+}
+
+type Query {
+  findAllPlants: [Plant!]!
+  findOnePlant(id: String!): Plant!
+}
+
+type Mutation {
+  createPlant(createPlantInput: CreatePlantInput!): Plant!
+  updatePlant(updatePlantInput: UpdatePlantInput!): Plant!
+  removePlant(id: String!): Boolean!
+}
+
+input CreatePlantInput {
+  address: String!
+}
+
+input UpdatePlantInput {
+  id: String!
+  address: String!
+}
