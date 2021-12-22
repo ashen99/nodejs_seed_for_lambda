@@ -249,12 +249,12 @@ __decorate([
 ], Permission.prototype, "id", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: false }),
     __metadata("design:type", String)
 ], Permission.prototype, "name", void 0);
 __decorate([
     (0, graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Permission.prototype, "permission", void 0);
 __decorate([
