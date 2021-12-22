@@ -9,6 +9,6 @@ export class Sbu {
   id: number;
 
   @Field()
-  @Column()
+  @Column({ nullable: false })
   name: string;
 }
