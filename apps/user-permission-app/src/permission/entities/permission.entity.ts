@@ -19,4 +19,10 @@ export class Permission {
   @Field(() => Boolean)
   @Column()
   status: boolean;
+
+  constructor(name?: string, permission?: string, status?: boolean) {
+    this.name = name;
+    this.permission = permission;
+    this.status = status;
+  }
 }
