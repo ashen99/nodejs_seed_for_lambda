@@ -13,26 +13,26 @@ export class PlantService {
   ) {}
 
   //This function saves a New Plant in the Database
-  async create(createPlantInput: CreatePlantInput) {
+  async create(createPlantInput: CreatePlantInput):Promise<Plant> {
     const plant = this.plantRepository.create(createPlantInput);
     return this.plantRepository.save(plant);
   }
 
   //This function query all the data in the table and return
-  async findAll() {
+  async findAll():Promise<Plant[]> {
     return this.plantRepository.find();
   }
 
 
   //This function query the relavant data to the given object and return
-  async findOne(id: string) {
+  async findOne(id: string):Promise<Plant> {
     return this.plantRepository.findOne(id);
   }
 
 
   //This function updates the relavant data to the given new object and the id
   //Here first try to find the relavant data to the given id and then updates it and saves again
-  async update(id: string, updatePlantInput: UpdatePlantInput) {
+  async update(id: string, updatePlantInput: UpdatePlantInput) :Promise<Plant> {
     const plant = await this.plantRepository.findOne({ where: { id } });
     if (!plant) {
       throw new Error(`The plant with id: ${id} does not exist!`);
@@ -45,7 +45,7 @@ export class PlantService {
 
   //This function deletes the relavant data to the given id
   //First try to find the relavant and then deletes it and send true otherwise if data not exists for the given id  returns an exception
-  async remove(id: string) {
+  async remove(id: string):Promise<boolean> {
     const plant = await this.plantRepository.findOne({ where: { id } });
 
     if (!plant) {
