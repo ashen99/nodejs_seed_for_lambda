@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PlantService } from './plant.service';
 import { Plant } from './entities/plant.entity';
-import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { CreatePlantInput } from './dto/create-plant.input';
+import { UpdatePlantInput } from "./dto/update-plant.input";
 
 const plantArray = [
   new Plant('Colombo'),
@@ -11,10 +12,16 @@ const plantArray = [
 ];
 
 const onePlant = new Plant('Ja Ela');
+onePlant.id = 'ed2a61d6-62f0-11ec-90d6-0242ac120003';
 
+const createPlantDto = new CreatePlantInput();
+createPlantDto.address = 'Warakapola';
+
+const updatePlantDto = new UpdatePlantInput();
+updatePlantDto.address = 'Samanala';
+updatePlantDto.id = "ed2a61d6-62f0-11ec-90d6-0242ac120003"
 describe('PlantService', () => {
   let service: PlantService;
-  let repo: Repository<Plant>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -22,11 +29,20 @@ describe('PlantService', () => {
         {
           provide: getRepositoryToken(Plant),
           useValue: {
-            find: jest.fn().mockResolvedValue(plantArray),
-            findOneOrFail: jest.fn().mockReturnValue(onePlant),
-            create: jest.fn().mockReturnValue(onePlant),
-            update: jest.fn().mockReturnValue(onePlant),
-            delete: jest.fn().mockResolvedValue(true),
+            create: jest.fn().mockImplementation((payload) => payload),
+            save: jest.fn().mockImplementation((plant) =>
+              Promise.resolve({
+                id: 'ed2a61d6-62f0-11ec-90d6-0242ac120003',
+                ...plant,
+              }),
+            ),
+            find: jest
+              .fn()
+              .mockImplementation(() => Promise.resolve(plantArray)),
+            findOne: jest
+              .fn()
+              .mockImplementation(() => Promise.resolve(onePlant)),
+            remove: jest.fn().mockImplementation((plant) => true),
           },
         },
         PlantService,
@@ -34,29 +50,36 @@ describe('PlantService', () => {
     }).compile();
 
     service = module.get<PlantService>(PlantService);
-    repo = module.get<Repository<Plant>>(getRepositoryToken(Plant));
   });
 
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  describe('findAll', () => {
-    it('Should return an array of plants', async () => {
-      const plants = await service.findAll();
-      expect(plants).toEqual(plantArray);
+  it('should create a new plant', async () => {
+    expect(await service.create(createPlantDto)).toEqual({
+      id: 'ed2a61d6-62f0-11ec-90d6-0242ac120003',
+      ...createPlantDto,
     });
   });
 
-/*  describe('findOne', () => {
-    it('Should return single Plant', async () => {
-      const repoSpy = jest.spyOn(repo, 'findOneOrFail');
-      await expect(
-        service.findOne('5dbe839b-b803-4aab-9943-6cb5aa361869'),
-      ).resolves.toEqual(onePlant);
-      expect(repoSpy).toBeCalledWith({
-        id: '5dbe839b-b803-4aab-9943-6cb5aa361869',
-      });
-    });
-  });*/
+  it('should get plant array', async () => {
+    expect(await service.findAll()).toEqual(plantArray);
+  });
+
+  it('should get a plant ', async () => {
+    expect(
+      await service.findOne('ed2a61d6-62f0-11ec-90d6-0242ac120003'),
+    ).toEqual(onePlant);
+  });
+
+  it('should remove a plant', async () => {
+    expect(
+      await service.remove('ed2a61d6-62f0-11ec-90d6-0242ac120003'),
+    ).toEqual(true);
+  });
+
+  it('should update the plant',async  () =>{
+    expect(await service.update("ed2a61d6-62f0-11ec-90d6-0242ac120003",updatePlantDto)).toEqual({id:"ed2a61d6-62f0-11ec-90d6-0242ac120003",...onePlant})
+  })
 });

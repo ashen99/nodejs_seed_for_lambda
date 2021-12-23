@@ -33,7 +33,7 @@ export class PlantService {
   //This function updates the relavant data to the given new object and the id
   //Here first try to find the relavant data to the given id and then updates it and saves again
   async update(id: string, updatePlantInput: UpdatePlantInput) :Promise<Plant> {
-    const plant = await this.plantRepository.findOne({ where: { id } });
+    const plant = await this.plantRepository.findOne(id);
     if (!plant) {
       throw new Error(`The plant with id: ${id} does not exist!`);
     }
@@ -46,7 +46,7 @@ export class PlantService {
   //This function deletes the relavant data to the given id
   //First try to find the relavant and then deletes it and send true otherwise if data not exists for the given id  returns an exception
   async remove(id: string):Promise<boolean> {
-    const plant = await this.plantRepository.findOne({ where: { id } });
+    const plant = await this.plantRepository.findOne(id);
 
     if (!plant) {
       throw new Error(`The plant with id: ${id} does not exist!`);

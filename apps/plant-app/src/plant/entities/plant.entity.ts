@@ -6,10 +6,10 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Plant {
   @Field()
   @PrimaryGeneratedColumn('uuid')
-  id: { id: string };
+  id: string;
 
   @Field()
-  @Column({nullable:false})
+  @Column({ nullable: false })
   address: string;
 
   constructor(address?: string);
