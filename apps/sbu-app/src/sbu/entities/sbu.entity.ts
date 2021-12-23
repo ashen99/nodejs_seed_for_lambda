@@ -11,4 +11,8 @@ export class Sbu {
   @Field()
   @Column({ nullable: false })
   name: string;
+
+  constructor(name?: string) {
+    this.name = name;
+  }
 }
