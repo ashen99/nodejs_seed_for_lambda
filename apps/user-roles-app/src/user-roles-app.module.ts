@@ -4,8 +4,8 @@ import { UserRolesAppService } from './user-roles-app.service';
 import { UserRoleModule } from './user-role/user-role.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRole } from './user-role/entities/user-role.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [

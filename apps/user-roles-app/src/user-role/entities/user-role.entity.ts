@@ -11,6 +11,6 @@ export class UserRole {
   @Column()
   roleName: string;
   @Field(() => [String])
-  @Column('uuid', { array: true })
+  @Column('text', { array: true })
   permission: string[];
 }

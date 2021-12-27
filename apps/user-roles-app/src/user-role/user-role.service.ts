@@ -25,14 +25,15 @@ export class UserRoleService {
 
   //this will update the specific row when the id is given
   async update(id: string, userrole: UserRoleUpdateDto): Promise<UserRole> {
-    const { roleName } = userrole;
+    const { roleName, permission } = userrole;
     const user = await this.findOne(id);
 
-    if (roleName) {
+    if (id) {
       user.roleName = roleName;
+      user.permission = permission;
+      return this.userRoleRepository.save(user);
     }
-
-    return this.userRoleRepository.save(user);
+    throw new Error(`Record cannot find by id ${id}`);
   }
 
   //this is used to find the specific role by id

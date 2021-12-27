@@ -26,8 +26,8 @@ const user_roles_app_service_1 = __webpack_require__(5);
 const user_role_module_1 = __webpack_require__(6);
 const graphql_1 = __webpack_require__(11);
 const path_1 = __webpack_require__(15);
-const typeorm_1 = __webpack_require__(8);
 const user_role_entity_1 = __webpack_require__(10);
+const typeorm_1 = __webpack_require__(8);
 let UserRolesAppModule = class UserRolesAppModule {
 };
 UserRolesAppModule = __decorate([
@@ -191,12 +191,14 @@ let UserRoleService = class UserRoleService {
         return this.userRoleRepository.save(userRole);
     }
     async update(id, userrole) {
-        const { roleName } = userrole;
+        const { roleName, permission } = userrole;
         const user = await this.findOne(id);
-        if (roleName) {
+        if (id) {
             user.roleName = roleName;
+            user.permission = permission;
+            return this.userRoleRepository.save(user);
         }
-        return this.userRoleRepository.save(user);
+        throw new Error(`Record cannot find by id ${id}`);
     }
     findOne(id) {
         return this.userRoleRepository.findOne(id);
@@ -264,7 +266,7 @@ __decorate([
 ], UserRole.prototype, "roleName", void 0);
 __decorate([
     (0, graphql_1.Field)(() => [String]),
-    (0, typeorm_1.Column)('uuid', { array: true }),
+    (0, typeorm_1.Column)('text', { array: true }),
     __metadata("design:type", Array)
 ], UserRole.prototype, "permission", void 0);
 UserRole = __decorate([
@@ -470,6 +472,7 @@ const core_1 = __webpack_require__(1);
 const user_roles_app_module_1 = __webpack_require__(2);
 async function bootstrap() {
     const app = await core_1.NestFactory.create(user_roles_app_module_1.UserRolesAppModule);
+    app.enableCors();
     await app.listen(3000);
 }
 bootstrap();
