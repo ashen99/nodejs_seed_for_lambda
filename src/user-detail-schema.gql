@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserDetail {
+  id: Int!
+  email: String!
+  first_name: String
+  last_name: String
+  user_name: String!
+  role: String!
+  sbu: [String!]!
+  customer: String!
+  status: String!
+}
+
+type Query {
+  findAllUserDetails: [UserDetail!]!
+  findOneUserDetail(id: Int!): UserDetail!
+}
+
+type Mutation {
+  createUserDetail(createUserDetailInput: CreateUserDetailInput!): UserDetail!
+  updateUserDetail(updateUserDetailInput: UpdateUserDetailInput!): UserDetail!
+  deleteUserDetail(id: Int!): Boolean!
+}
+
+input CreateUserDetailInput {
+  id: Int!
+  email: String!
+  first_name: String
+  last_name: String
+  user_name: String!
+  role: String!
+  sbu: [String!]!
+  customer: String!
+  status: String!
+}
+
+input UpdateUserDetailInput {
+  id: Int!
+  email: String
+  first_name: String
+  last_name: String
+  user_name: String
+  role: String
+  sbu: [String!]
+  customer: String
+  status: String
+}

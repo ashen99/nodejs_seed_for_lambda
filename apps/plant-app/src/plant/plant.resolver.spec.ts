@@ -21,10 +21,10 @@ describe('PlantResolver', () => {
                   address: 'Thulhiriya',
                 },
               ]),
-              findOne: jest.fn((id: { id: string }) => {
+              findOne: jest.fn((id) => {
                 const testPlant = new Plant();
                 testPlant.id = id;
-                testPlant.address = 'Thulhiriya';
+                testPlant.address = 'Thulhiriya'
                 return testPlant;
               }),
               create: jest.fn((plant: CreatePlantInput) => ({
