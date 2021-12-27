@@ -6,9 +6,14 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Plant {
   @Field()
   @PrimaryGeneratedColumn('uuid')
-  id: { id: string };
+  id: string;
 
   @Field()
-  @Column()
+  @Column({ nullable: false })
   address: string;
+
+  constructor(address?: string);
+  constructor(address: string) {
+    this.address = address;
+  }
 }
