@@ -53,6 +53,15 @@
         "tsConfigPath": "apps/sbu-app/tsconfig.app.json"
       }
     },
+    "user-permission-app": {
+      "type": "application",
+      "root": "apps/user-permission-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/user-permission-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user-permission-app/tsconfig.app.json"
+      }
+    },
     "user-roles-app": {
       "type": "application",
       "root": "apps/user-roles-app",
