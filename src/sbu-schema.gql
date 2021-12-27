@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Sbu {
+  id: Int!
+  name: String!
+}
+
+type Query {
+  findAllSbu: [Sbu!]!
+  findOneSbu(id: Int!): Sbu!
+}
+
+type Mutation {
+  createSbu(createSbuInput: CreateSbuInput!): Sbu!
+  updateSbu(updateSbuInput: UpdateSbuInput!): Sbu!
+  removeSbu(id: Int!): Sbu!
+}
+
+input CreateSbuInput {
+  name: String!
+}
+
+input UpdateSbuInput {
+  name: String!
+  id: Int!
+}
