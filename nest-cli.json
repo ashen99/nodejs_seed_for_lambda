@@ -35,6 +35,33 @@
         "tsConfigPath": "apps/plant-app/tsconfig.app.json"
       }
     },
+    "user-details-app": {
+      "type": "application",
+      "root": "apps/user-details-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/user-details-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user-details-app/tsconfig.app.json"
+      }
+    }
+    "sbu-app": {
+      "type": "application",
+      "root": "apps/sbu-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/sbu-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/sbu-app/tsconfig.app.json"
+      }
+    },
+    "user-permission-app": {
+      "type": "application",
+      "root": "apps/user-permission-app",
+      "entryFile": "main",
+      "sourceRoot": "apps/user-permission-app/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/user-permission-app/tsconfig.app.json"
+      }
+    },
     "user-roles-app": {
       "type": "application",
       "root": "apps/user-roles-app",
