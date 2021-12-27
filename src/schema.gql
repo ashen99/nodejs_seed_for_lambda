@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserRole {
+  id: String!
+  roleName: String!
+  permission: [String!]!
+}
+
+type Query {
+  getAllUserRoles: [UserRole!]!
+}
+
+type Mutation {
+  createUserRole(userroleInput: UserRoleCreateDto!): UserRole!
+  updateUserRole(updateUserRole: UserRoleUpdateDto!): UserRole!
+  deleteUserRole(id: String!): UserRole!
+}
+
+input UserRoleCreateDto {
+  roleName: String!
+  permission: [String!]!
+}
+
+input UserRoleUpdateDto {
+  id: String!
+  roleName: String!
+  permission: [String!]!
+}
